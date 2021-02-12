@@ -19,4 +19,13 @@ router.post('/login', async (req, res) => {
 	}
 });
 
+router.get('/doctors', async (req, res) => {
+	const doctor = await Usuario.findAll({
+		where: {
+			role: 'doctor',
+		},
+	});
+	res.json(doctor);
+});
+
 module.exports = router;

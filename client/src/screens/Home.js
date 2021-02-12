@@ -5,6 +5,9 @@ const Home = () => {
 	const history = useHistory();
 	const [appo, setAppo] = useState([]);
 	const [user, setUser] = useState({});
+	const [date, setDate] = useState('');
+	const [select, setSelect] = useState('');
+	const [doctors, setDoctors] = useState([]);
 
 	useEffect(() => {
 		const localUser = JSON.parse(localStorage.getItem('user'));
@@ -12,25 +15,74 @@ const Home = () => {
 			history.push('/login');
 		}
 		setUser(localUser);
-		axios.get('http://localhost:4000/turnos').then((result) => {
-			setAppo(result.data);
-		});
+		if (localUser.role === 'doctor') {
+			axios
+				.post('http://localhost:4000/turnos', {
+					doctorId: localUser.id,
+				})
+				.then((result) => {
+					setAppo(result.data);
+				});
+		} else {
+			axios
+				.get('http://localhost:4000/usuarios/doctors')
+				.then((result) => {
+					setDoctors(result.data);
+				});
+		}
 	}, []);
 
-	console.log('appo', appo);
+	const handleSubmit = (ev) => {
+		ev.preventDefault();
+		axios.post('http://localhost:4000/turnos/create', {
+			fecha: date,
+			doctorId: select,
+			pacienteId: user.id,
+		});
+	};
+
 	if (user?.role === 'paciente')
 		return (
-			<form>
-				<input type='date' />
-			</form>
+			<>
+				<div className='container'>
+					<h1>Elegir fecha para un turno:</h1>
+					<form onSubmit={handleSubmit}>
+						<input
+							type='date'
+							onChange={(ev) => setDate(ev.target.value)}
+						/>
+						<select onChange={(ev) => setSelect(ev.target.value)}>
+							{doctors.map((doctor) => (
+								<option
+									value={doctor.id}
+									key={doctor.id}
+								>{`${doctor.firstName} ${doctor.lastName}`}</option>
+							))}
+						</select>
+						<button type='submit'>Solicitar</button>
+					</form>
+				</div>
+			</>
 		);
 	else {
 		return (
-			<div>
-				{!!appo?.length &&
-					appo.map((appointment) => (
-						<div key={appointment.id}>{appointment.fecha}</div>
-					))}
+			<div className='container'>
+				<h1>Tus turnos asignados:</h1>
+				{appo?.length ? (
+					<ul className='doctor-apps'>
+						{appo.map((appointment) => (
+							<li key={appointment.id}>
+								Fecha: {appointment.fecha.split('T')[0]}{' '}
+								<span>
+									Paciente:{' '}
+									{`${appointment.paciente.firstName} ${appointment.paciente.lastName}`}
+								</span>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>No tienes turnos asignados todavía.</p>
+				)}
 			</div>
 		);
 	}

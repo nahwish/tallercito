@@ -27,39 +27,42 @@ const Register = ({ setUser }) => {
 		});
 	};
 	return (
-		<form onSubmit={handleSubmit}>
-			<input
-				name='email'
-				type='email'
-				placeholder='Email'
-				onChange={handleChange}
-			/>
-			<input
-				name='password'
-				type='password'
-				placeholder='Password'
-				onChange={handleChange}
-			/>
-			<input
-				name='firstName'
-				type='text'
-				placeholder='First Name'
-				onChange={handleChange}
-			/>
-			<input
-				name='lastName'
-				type='text'
-				placeholder='Last Name'
-				onChange={handleChange}
-			/>
-			<input
-				name='phone'
-				type='tel'
-				placeholder='Phone'
-				onChange={handleChange}
-			/>
-			<button type='submit'>Sign Up</button>
-		</form>
+		<div className='container'>
+			<h1>Registrate:</h1>
+			<form onSubmit={handleSubmit}>
+				<input
+					name='email'
+					type='email'
+					placeholder='Email'
+					onChange={handleChange}
+				/>
+				<input
+					name='password'
+					type='password'
+					placeholder='Password'
+					onChange={handleChange}
+				/>
+				<input
+					name='firstName'
+					type='text'
+					placeholder='First Name'
+					onChange={handleChange}
+				/>
+				<input
+					name='lastName'
+					type='text'
+					placeholder='Last Name'
+					onChange={handleChange}
+				/>
+				<input
+					name='phone'
+					type='tel'
+					placeholder='Phone'
+					onChange={handleChange}
+				/>
+				<button type='submit'>Sign Up</button>
+			</form>
+		</div>
 	);
 };
 

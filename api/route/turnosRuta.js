@@ -1,9 +1,21 @@
 const express = require('express');
 const Turno = require('../model/Turno');
+const Usuario = require('../model/Usuario');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-	const turnos = await Turno.findAll();
+router.post('/', async (req, res) => {
+	const { doctorId } = req.body;
+	const turnos = await Turno.findAll({
+		where: {
+			doctorId,
+		},
+		include: [
+			{
+				model: Usuario,
+				as: 'paciente',
+			},
+		],
+	});
 	res.json(turnos);
 });
 

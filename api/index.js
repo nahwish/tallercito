@@ -38,20 +38,48 @@ db.sync({ force: true })
 				console.log('Escuchando en localhost:4000');
 			}
 		});
-		return Usuario.create({
-			firstName: 'Emiliano',
-			lastName: 'Alfonso',
-			telefono: 666,
-			email: 'emi@mail.com',
-			password: '12345',
-			role: 'doctor',
-		});
+		return Usuario.bulkCreate([
+			{
+				firstName: 'Emiliano',
+				lastName: 'Alfonso',
+				phone: 666,
+				email: 'emi@mail.com',
+				password: '12345',
+				role: 'doctor',
+			},
+			{
+				firstName: 'Julig',
+				lastName: 'Nacio',
+				phone: '999',
+				email: 'juli@tips.com',
+				password: '12345',
+				role: 'paciente',
+			},
+			{
+				firstName: 'Nacho',
+				lastName: 'Macho',
+				phone: '332',
+				email: 'nacho@macho.com',
+				password: '12345',
+				role: 'doctor',
+			},
+			{
+				firstName: 'Tincho',
+				lastName: 'Glífico',
+				phone: '332423',
+				email: 'tincho@tincho.com',
+				password: '12345',
+				role: 'doctor',
+			},
+		]);
 	})
 	.then(() => {
-		console.log('USUARIO CREADO');
+		console.log('USUARIOS CREADOS');
 		const date = new Date();
 		return Turno.create({
 			fecha: date,
+			pacienteId: 2,
+			doctorId: 1,
 		});
 	})
 	.then(() => {

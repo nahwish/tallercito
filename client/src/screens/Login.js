@@ -15,7 +15,7 @@ const Login = ({ setUser }) => {
 				'http://localhost:4000/usuarios/login',
 				input
 			);
-			localStorage.setItem('user', JSON.stringify(user));
+			localStorage.setItem('user', JSON.stringify(user.data));
 			setUser(user);
 			history.push('/');
 		} catch (err) {
@@ -23,21 +23,26 @@ const Login = ({ setUser }) => {
 		}
 	};
 	return (
-		<form onSubmit={handleSubmit}>
-			<input
-				type='email'
-				onChange={(ev) =>
-					setInput({ ...input, email: ev.target.value })
-				}
-			/>
-			<input
-				type='password'
-				onChange={(ev) =>
-					setInput({ ...input, password: ev.target.value })
-				}
-			/>
-			<button type='submit'>Login</button>
-		</form>
+		<div className='container'>
+			<h1>Iniciar sesión:</h1>
+			<form onSubmit={handleSubmit}>
+				<input
+					type='email'
+					placeholder='nombre@mail.com'
+					onChange={(ev) =>
+						setInput({ ...input, email: ev.target.value })
+					}
+				/>
+				<input
+					type='password'
+					placeholder='password'
+					onChange={(ev) =>
+						setInput({ ...input, password: ev.target.value })
+					}
+				/>
+				<button type='submit'>Login</button>
+			</form>
+		</div>
 	);
 };
 
