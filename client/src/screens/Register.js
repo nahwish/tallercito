@@ -12,8 +12,8 @@ const Register = ({ setUser }) => {
 				'http://localhost:4000/usuarios/register',
 				input
 			);
-			localStorage.setItem('user', JSON.stringify(user));
-			setUser(user);
+			localStorage.setItem('user', JSON.stringify(user.data));
+			setUser(user.data);
 			history.push('/');
 		} catch (err) {
 			console.error('err', err);

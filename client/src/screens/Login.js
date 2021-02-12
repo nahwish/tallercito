@@ -16,7 +16,7 @@ const Login = ({ setUser }) => {
 				input
 			);
 			localStorage.setItem('user', JSON.stringify(user.data));
-			setUser(user);
+			setUser(user.data);
 			history.push('/');
 		} catch (err) {
 			console.error('err', err);
