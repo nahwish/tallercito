@@ -1,13 +1,95 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+	--primary: #0af;
+	--primary-2: #4ec1fa;
+	--bg: #3b4852;
+	--bg-2: #2f383f;
+}
+
+body {
+	background-color: var(--bg);
+	color: #eee;
+	font-family: 'Nunito', 'Open Sans', Arial, sans-serif;
+}
+
+nav {
+	background: #222;
+	padding: 1em 2em;
+}
+
+ul {
+	list-style: none;
+}
+
+nav li {
+	cursor: pointer;
+	display: inline-block;
+}
+
+nav ul li:last-child {
+	margin-left: 3em;
+}
+
+form {
+	max-width: 400px;
+	margin: 2em 0;
+	display: flex;
+	flex-direction: column;
+}
+
+input,
+select {
+	padding: 0.5em 1em;
+	font: inherit;
+	margin-bottom: 1em;
+	border-radius: 0.3em;
+	border: 3px solid transparent;
+}
+
+input:focus {
+	outline: none;
+	border: 3px solid var(--primary);
+}
+
+button {
+	font: inherit;
+	border: 0;
+	background-color: var(--primary);
+	padding: 0.5em 1em;
+	border-radius: 0.3em;
+	cursor: pointer;
+	font-weight: bold;
+	transition: all 0.15s ease;
+}
+
+button:hover,
+button:focus {
+	outline: none;
+	transform: translateY(-5px) scale(1.03);
+	box-shadow: 0 5px 15px -10px black;
+	background-color: var(--primary-2);
+}
+
+.container {
+	margin: 3em;
+}
+
+.doctor-apps li {
+	background: red;
+	padding: 1em 2em;
+	background-color: var(--bg-2);
+	border-radius: 0.4em;
+	display: inline-block;
+	margin: 1em 1em 0 0;
+}
+
+.doctor-apps span {
+	display: block;
 }
