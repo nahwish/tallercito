@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
+	console.log('req.body', req.body);
 	await Turno.create(req.body);
 	res.json('Turno creado');
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 const Home = () => {
@@ -6,9 +6,8 @@ const Home = () => {
 	const [appo, setAppo] = useState([]);
 	const [user, setUser] = useState({});
 	const [date, setDate] = useState('');
-	const [select, setSelect] = useState('');
 	const [doctors, setDoctors] = useState([]);
-
+	const select = useRef(null);
 	useEffect(() => {
 		const localUser = JSON.parse(localStorage.getItem('user'));
 		if (!localUser) {
@@ -34,11 +33,14 @@ const Home = () => {
 
 	const handleSubmit = (ev) => {
 		ev.preventDefault();
+		console.log(select.current.value);
 		axios.post('http://localhost:4000/turnos/create', {
 			fecha: date,
-			doctorId: select,
+			doctorId: Number(select.current.value),
 			pacienteId: user.id,
 		});
+		alert('Tu turno fue solicitado exitosamente.');
+		setDate('');
 	};
 
 	if (user?.role === 'paciente')
@@ -49,9 +51,11 @@ const Home = () => {
 					<form onSubmit={handleSubmit}>
 						<input
 							type='date'
+							value={date}
+							required
 							onChange={(ev) => setDate(ev.target.value)}
 						/>
-						<select onChange={(ev) => setSelect(ev.target.value)}>
+						<select ref={select}>
 							{doctors.map((doctor) => (
 								<option
 									value={doctor.id}

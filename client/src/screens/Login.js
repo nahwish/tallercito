@@ -27,6 +27,7 @@ const Login = ({ setUser }) => {
 			<h1>Iniciar sesión:</h1>
 			<form onSubmit={handleSubmit}>
 				<input
+					required
 					type='email'
 					placeholder='nombre@mail.com'
 					onChange={(ev) =>
@@ -34,6 +35,7 @@ const Login = ({ setUser }) => {
 					}
 				/>
 				<input
+					required
 					type='password'
 					placeholder='password'
 					onChange={(ev) =>

@@ -31,30 +31,35 @@ const Register = ({ setUser }) => {
 			<h1>Registrate:</h1>
 			<form onSubmit={handleSubmit}>
 				<input
+					required
 					name='email'
 					type='email'
 					placeholder='Email'
 					onChange={handleChange}
 				/>
 				<input
+					required
 					name='password'
 					type='password'
 					placeholder='Password'
 					onChange={handleChange}
 				/>
 				<input
+					required
 					name='firstName'
 					type='text'
 					placeholder='First Name'
 					onChange={handleChange}
 				/>
 				<input
+					required
 					name='lastName'
 					type='text'
 					placeholder='Last Name'
 					onChange={handleChange}
 				/>
 				<input
+					required
 					name='phone'
 					type='tel'
 					placeholder='Phone'

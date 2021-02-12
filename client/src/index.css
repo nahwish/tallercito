@@ -87,7 +87,7 @@ button:focus {
 	background-color: var(--bg-2);
 	border-radius: 0.4em;
 	display: inline-block;
-	margin: 1em 0;
+	margin: 1em 1em 0 0;
 }
 
 .doctor-apps span {
