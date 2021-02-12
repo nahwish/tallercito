@@ -76,9 +76,9 @@ const Home = () => {
 					<ul className='doctor-apps'>
 						{appo.map((appointment) => (
 							<li key={appointment.id}>
-								Fecha: {appointment.fecha.split('T')[0]}{' '}
+								Fecha: {appointment.fecha.split('T')[0]}
 								<span>
-									Paciente:{' '}
+									Paciente:
 									{`${appointment.paciente.firstName} ${appointment.paciente.lastName}`}
 								</span>
 							</li>
